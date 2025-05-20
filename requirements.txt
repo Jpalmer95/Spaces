@@ -1,4 +1,2 @@
 huggingface_hub
 gradio_client
-sqlite3
-argparse
