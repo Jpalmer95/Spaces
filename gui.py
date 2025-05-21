@@ -2,7 +2,7 @@ import sys
 from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QTabWidget, QGroupBox,
     QLabel, QLineEdit, QComboBox, QSpinBox, QPushButton, QTableWidget,
-    QTableWidgetItem, QListWidget, QHBoxLayout, QMessageBox, QHeaderView,
+    QTableWidgetItem, QListWidget, QListWidgetItem, QHBoxLayout, QMessageBox, QHeaderView,
     QSplitter, QScrollArea, QFormLayout, QFileDialog, QCheckBox, QInputDialog,
     QMenu, QStackedWidget
 )
@@ -54,11 +54,6 @@ class SpacesUI(QMainWindow):
         self.space_discovery_gb = QGroupBox("Space Discovery") # Changed from QWidget to QGroupBox
         self.tab_widget.addTab(self.space_discovery_gb, "Space Discovery")
         self.init_space_discovery_tab()
-
-        # --- Placeholder for Space Execution Tab ---
-        self.space_execution_tab = QGroupBox("Space Execution")
-        self.tab_widget.addTab(self.space_execution_tab, "Space Execution")
-        # Add placeholder content or setup method if needed
 
         # --- Placeholder for Results Library Tab ---
         self.results_library_tab = QGroupBox("Results Library")
@@ -274,6 +269,23 @@ class SpacesUI(QMainWindow):
     # This is crucial if they were defined locally in previous versions.
     # For brevity, assuming these are correctly defined as members.
     # ... (Space Execution methods)
+
+    def init_space_execution_tab(self):
+        # This method is called after self.space_execution_gb is created and added to the tab widget
+        layout = QVBoxLayout(self.space_execution_gb) # Set layout directly on the groupbox
+        
+        # Placeholder content
+        placeholder_label = QLabel("Space Execution Content Placeholder - To be implemented")
+        placeholder_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(placeholder_label)
+        
+        # You can add more specific widgets here if their members (e.g. self.some_button_exec)
+        # are already initialized in __init__. For now, a placeholder is sufficient.
+        # For example:
+        # self.some_specific_widget_for_exec_tab = QLineEdit()
+        # layout.addWidget(self.some_specific_widget_for_exec_tab)
+
+        self.space_execution_gb.setLayout(layout) # Ensure the layout is set on the groupbox
 
     # --- Methods for Results Library Tab ---
     def init_results_library_tab(self):
