@@ -1,0 +1,262 @@
+qt.core.plugin.factoryloader: checking directory path "/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms" ...
+qt.core.plugin.factoryloader: looking at "libqvkkhrdisplay.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqvkkhrdisplay.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "vkkhrdisplay"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QVkKhrDisplayIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("vkkhrdisplay")
+qt.core.plugin.factoryloader: looking at "libqminimal.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqminimal.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "minimal"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QMinimalIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("minimal")
+qt.core.plugin.factoryloader: looking at "libqeglfs.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqeglfs.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "eglfs"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QEglFSIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("eglfs")
+qt.core.plugin.factoryloader: looking at "libqwayland-egl.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqwayland-egl.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "wayland-egl"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QWaylandEglPlatformIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("wayland-egl")
+qt.core.plugin.factoryloader: looking at "libqxcb.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqxcb.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "xcb"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QXcbIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("xcb")
+qt.core.plugin.factoryloader: looking at "libqwayland-generic.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqwayland-generic.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "wayland"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QWaylandIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("wayland")
+qt.core.plugin.factoryloader: looking at "libqlinuxfb.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqlinuxfb.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "linuxfb"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QLinuxFbIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("linuxfb")
+qt.core.plugin.factoryloader: looking at "libqoffscreen.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqoffscreen.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "offscreen"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QOffscreenIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("offscreen")
+qt.core.plugin.factoryloader: looking at "libqvnc.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqvnc.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "vnc"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QVncIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("vnc")
+qt.core.plugin.factoryloader: looking at "libqminimalegl.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqminimalegl.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "minimalegl"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QMinimalEglIntegrationPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("minimalegl")
+qt.core.plugin.factoryloader: checking directory path "/usr/bin/platforms" ...
+qt.core.library: "/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqxcb.so" loaded library
+qt.core.plugin.factoryloader: checking directory path "/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platformthemes" ...
+qt.core.plugin.factoryloader: looking at "libqgtk3.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platformthemes/libqgtk3.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformThemeFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "gtk3"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QGtk3ThemePlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("gtk3")
+qt.core.plugin.factoryloader: looking at "libqxdgdesktopportal.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platformthemes/libqxdgdesktopportal.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformThemeFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "xdgdesktopportal",
+            "flatpak",
+            "snap"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QXdgDesktopPortalThemePlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("xdgdesktopportal", "flatpak", "snap")
+qt.core.plugin.factoryloader: checking directory path "/usr/bin/platformthemes" ...
+qt.core.plugin.factoryloader: checking directory path "/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforminputcontexts" ...
+qt.core.plugin.factoryloader: looking at "libibusplatforminputcontextplugin.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforminputcontexts/libibusplatforminputcontextplugin.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPlatformInputContextFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "ibus"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QIbusPlatformInputContextPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("ibus")
+qt.core.plugin.factoryloader: looking at "libcomposeplatforminputcontextplugin.so"
+qt.core.plugin.loader: Found metadata in lib /home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPlatformInputContextFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "compose",
+            "xim"
+        ]
+    },
+    "archlevel": 1,
+    "className": "QComposePlatformInputContextPlugin",
+    "debug": false,
+    "version": 395520
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("compose", "xim")
+qt.core.plugin.factoryloader: checking directory path "/usr/bin/platforminputcontexts" ...
+qt.core.library: "/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so" loaded library
+qt.core.plugin.factoryloader: checking directory path "/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/styles" ...
+qt.core.plugin.factoryloader: checking directory path "/usr/bin/styles" ...
+Database 'generated_content.db' initialized and table 'content_library' created/ensured.
+Traceback (most recent call last):
+  File "/app/gui.py", line 543, in <module>
+    main_window = SpacesUI() 
+  File "/app/gui.py", line 56, in __init__
+    self.init_space_discovery_tab()
+  File "/app/gui.py", line 108, in init_space_discovery_tab
+    self.search_button.clicked.connect(self.handle_search_spaces)
+AttributeError: 'SpacesUI' object has no attribute 'handle_search_spaces'
+"/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so" unloaded library 
+"/home/jules/.local/lib/python3.10/site-packages/PyQt6/Qt6/plugins/platforms/libqxcb.so" unloaded library 

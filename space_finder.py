@@ -81,3 +81,21 @@ def get_favorite_spaces() -> list[str]:
     except IOError:
         print(f"Error: Could not read from {FAVORITES_FILE}. Returning empty list.")
         return []
+
+def remove_from_favorites(space_id: str):
+    """
+    Removes a Hugging Face Space from the list of favorites.
+
+    Args:
+        space_id: The ID of the Space to remove from favorites.
+    """
+    favorites = get_favorite_spaces() # Use existing function to load favorites
+    if space_id in favorites:
+        favorites.remove(space_id)
+        try:
+            with open(FAVORITES_FILE, 'w') as f:
+                json.dump(favorites, f, indent=4)
+        except IOError:
+            print(f"Error: Could not write to {FAVORITES_FILE} when removing favorite.")
+    else:
+        print(f"Info: Space '{space_id}' not found in favorites.")
