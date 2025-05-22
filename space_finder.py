@@ -4,7 +4,7 @@ from huggingface_hub import HfApi, SpaceInfo # Ensure SpaceInfo is imported
 
 FAVORITES_FILE = 'favorite_spaces.json'
 
-def find_spaces(task_description: str, sort_by: str = 'likes', limit: int = 10) -> list[SpaceInfo]:
+def find_spaces(task_description: str, sort_by: str = 'likes', limit: int = 10, hf_token: str | None = None) -> list[SpaceInfo]:
     """
     Finds Hugging Face Spaces based on a task description.
 
@@ -16,7 +16,9 @@ def find_spaces(task_description: str, sort_by: str = 'likes', limit: int = 10) 
     Returns:
         A list of SpaceInfo objects matching the search criteria.
     """
-    api = HfApi()
+    if hf_token is None:
+        hf_token = os.environ.get("HF_TOKEN")
+    api = HfApi(token=hf_token)
     spaces = api.list_spaces(
         search=task_description,
         sort=sort_by,

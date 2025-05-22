@@ -8,10 +8,10 @@ from PyQt6.QtWidgets import (
     QLabel, QLineEdit, QComboBox, QSpinBox, QPushButton, QTableWidget,
     QTableWidgetItem, QListWidget, QListWidgetItem, QHBoxLayout, QMessageBox, QHeaderView,
     QSplitter, QScrollArea, QFormLayout, QFileDialog, QCheckBox, QInputDialog,
-    QMenu, QStackedWidget, QTextEdit, QDoubleSpinBox, QSlider
+    QMenu, QStackedWidget, QTextEdit, QDoubleSpinBox, QSlider, QColorDialog
 )
 from PyQt6.QtGui import QPalette, QColor, QAction, QDesktopServices, QPixmap
-from PyQt6.QtCore import Qt, pyqtSignal, QUrl
+from PyQt6.QtCore import Qt, pyqtSignal, QUrl, QSettings
 
 # Assuming space_finder.py, space_runner.py, and results_manager.py are in the same directory or accessible
 import space_finder
@@ -20,28 +20,25 @@ import results_manager # For saving results to DB
 from huggingface_hub import SpaceInfo # For type hinting if needed
 from gradio_client import handle_file # For file parameters
 
+def get_contrasting_text_color(background_color: QColor) -> QColor:
+    # Calculate luminance (simplified formula)
+    # Y = 0.299*R + 0.587*G + 0.114*B
+    luminance = 0.299 * background_color.redF() + \
+                0.587 * background_color.greenF() + \
+                0.114 * background_color.blueF()
+    return QColor(0, 0, 0) if luminance > 0.5 else QColor(255, 255, 255)
+
 class SpacesUI(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Spaces UI")
         self.setGeometry(100, 100, 1000, 800) # Increased size for more content
 
-        # Apply dark theme
-        palette = QPalette()
-        palette.setColor(QPalette.ColorRole.Window, QColor(53, 53, 53))
-        palette.setColor(QPalette.ColorRole.WindowText, QColor(255, 255, 255))
-        palette.setColor(QPalette.ColorRole.Base, QColor(25, 25, 25))
-        palette.setColor(QPalette.ColorRole.AlternateBase, QColor(53, 53, 53))
-        palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(255, 255, 255))
-        palette.setColor(QPalette.ColorRole.ToolTipText, QColor(255, 255, 255))
-        palette.setColor(QPalette.ColorRole.Text, QColor(255, 255, 255))
-        palette.setColor(QPalette.ColorRole.Button, QColor(42, 130, 218)) # Blue buttons
-        palette.setColor(QPalette.ColorRole.ButtonText, QColor(255, 255, 255))
-        palette.setColor(QPalette.ColorRole.BrightText, QColor(255, 0, 0))
-        palette.setColor(QPalette.ColorRole.Link, QColor(42, 130, 218))
-        palette.setColor(QPalette.ColorRole.Highlight, QColor(42, 130, 218))
-        palette.setColor(QPalette.ColorRole.HighlightedText, QColor(0, 0, 0)) # Black text on highlight
-        self.setPalette(palette)
+        self.settings = QSettings("MyCompany", "SpacesUI") # Or your preferred organization/app name
+        default_primary_color_hex = "#2a82da" # The original blue
+        saved_color_hex = self.settings.value("theme/primaryColor", default_primary_color_hex)
+        current_primary_color = QColor(saved_color_hex)
+        self._apply_theme_to_palette(current_primary_color)
 
         # Central widget and layout
         central_widget = QWidget()
@@ -81,6 +78,66 @@ class SpacesUI(QMainWindow):
         self.tab_widget.addTab(self.results_library_gb, "Results Library")
         self.init_results_library_tab()
 
+        # Add "Settings" menu
+        menu_bar = self.menuBar()
+        settings_menu = menu_bar.addMenu("&Settings")
+
+        change_theme_action = QAction("&Change Theme Color...", self)
+        change_theme_action.triggered.connect(self.handle_change_theme)
+        settings_menu.addAction(change_theme_action)
+
+    def _apply_theme_to_palette(self, primary_color: QColor):
+        palette = QPalette()
+        
+        # Define base dark theme colors
+        dark_window_bg = QColor(53, 53, 53)
+        dark_base_bg = QColor(35, 35, 35) # Darker for inputs/lists
+        dark_text_color = get_contrasting_text_color(dark_window_bg)
+
+        palette.setColor(QPalette.ColorRole.Window, dark_window_bg)
+        palette.setColor(QPalette.ColorRole.WindowText, dark_text_color)
+        palette.setColor(QPalette.ColorRole.Base, dark_base_bg)
+        palette.setColor(QPalette.ColorRole.AlternateBase, dark_window_bg) # Or a slightly different dark gray
+        palette.setColor(QPalette.ColorRole.ToolTipBase, QColor(255, 255, 220)) # Light yellow for tooltips
+        palette.setColor(QPalette.ColorRole.ToolTipText, QColor(0,0,0)) # Black text for tooltips
+        palette.setColor(QPalette.ColorRole.Text, dark_text_color)
+        
+        # Use primary_color for actionable items
+        button_text_color = get_contrasting_text_color(primary_color)
+        palette.setColor(QPalette.ColorRole.Button, primary_color)
+        palette.setColor(QPalette.ColorRole.ButtonText, button_text_color)
+        
+        palette.setColor(QPalette.ColorRole.BrightText, QColor(255, 0, 0)) # Keep for errors or important alerts
+        palette.setColor(QPalette.ColorRole.Link, primary_color)
+        
+        palette.setColor(QPalette.ColorRole.Highlight, primary_color)
+        palette.setColor(QPalette.ColorRole.HighlightedText, get_contrasting_text_color(primary_color))
+
+        # Ensure disabled states are visible
+        disabled_button_color = primary_color.darker(130) # Make it look grayed out a bit
+        # Ensure disabled_text_color is QColor
+        base_disabled_text_color = get_contrasting_text_color(disabled_button_color) 
+        palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, disabled_button_color)
+        palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, base_disabled_text_color)
+        palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, base_disabled_text_color.darker(110) if base_disabled_text_color.lightnessF() > 0.5 else base_disabled_text_color.lighter(110)) # Adjust based on its own lightness
+        palette.setColor(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, base_disabled_text_color.darker(110) if base_disabled_text_color.lightnessF() > 0.5 else base_disabled_text_color.lighter(110))
+
+
+        self.setPalette(palette)
+        # Also set for the entire application to ensure dialogs, etc., are themed
+        app = QApplication.instance()
+        if app:
+            app.setPalette(palette)
+
+    def handle_change_theme(self):
+        current_color_hex = self.settings.value("theme/primaryColor", "#2a82da")
+        initial_color = QColor(current_color_hex)
+        
+        new_color = QColorDialog.getColor(initial_color, self, "Select Primary Theme Color")
+        
+        if new_color.isValid():
+            self.settings.setValue("theme/primaryColor", new_color.name())
+            self._apply_theme_to_palette(new_color)
 
     def init_space_discovery_tab(self):
         discovery_layout = QVBoxLayout(self.space_discovery_gb)
@@ -1108,14 +1165,14 @@ class SpacesUI(QMainWindow):
                 QMessageBox.information(self, "Success", f"Result ID {self.selected_content_id_in_library} deleted.")
                 self.selected_content_id_in_library = None
                 self.rl_detail_area_group.setVisible(False)
-                self.load_results_from_db(page_to_load=self.current_results_page) 
+                self.load_results_from_db(page_to_load=self.current_results_page)
             else:
                 QMessageBox.critical(self, "Error", "Failed to delete result.")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.setStyle("Fusion") 
+    app.setStyle("Fusion")
     results_manager.init_db() # Initialize database schema if not exists
-    main_window = SpacesUI() 
+    main_window = SpacesUI()
     main_window.show()
     sys.exit(app.exec())
