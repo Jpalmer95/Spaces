@@ -1,9 +1,10 @@
 import gradio_client
 import io
+import os
 import sys
 from gradio_client.client import Job # For type hinting
 
-def get_space_api_details(space_id: str) -> str | None:
+def get_space_api_details(space_id: str, hf_token: str | None = None) -> str | None:
     """
     Retrieves the API details of a Hugging Face Space.
 
@@ -14,7 +15,9 @@ def get_space_api_details(space_id: str) -> str | None:
         A string containing the API information, or None if an error occurs.
     """
     try:
-        client = gradio_client.Client(space_id)
+        if hf_token is None:
+            hf_token = os.environ.get("HF_TOKEN")
+        client = gradio_client.Client(space_id, hf_token=hf_token)
     except Exception as e:
         print(f"Error initializing client for Space '{space_id}': {e}")
         return None
@@ -33,7 +36,7 @@ def get_space_api_details(space_id: str) -> str | None:
         captured_output.close()
     return api_details
 
-def run_space_predict(space_id: str, api_name: str, *args) -> any:
+def run_space_predict(space_id: str, api_name: str, *args, hf_token: str | None = None) -> any:
     """
     Runs a prediction on a Hugging Face Space.
 
@@ -46,14 +49,16 @@ def run_space_predict(space_id: str, api_name: str, *args) -> any:
         The prediction result, or None if an error occurs.
     """
     try:
-        client = gradio_client.Client(space_id)
+        if hf_token is None:
+            hf_token = os.environ.get("HF_TOKEN")
+        client = gradio_client.Client(space_id, hf_token=hf_token)
         result = client.predict(api_name=api_name, *args)
         return result
     except Exception as e:
         print(f"Error during prediction for Space '{space_id}', API '{api_name}': {e}")
         return None
 
-def run_space_submit(space_id: str, api_name: str, *args) -> Job | None:
+def run_space_submit(space_id: str, api_name: str, *args, hf_token: str | None = None) -> Job | None:
     """
     Submits a job to a Hugging Face Space asynchronously.
 
@@ -66,7 +71,9 @@ def run_space_submit(space_id: str, api_name: str, *args) -> Job | None:
         A Job object, or None if an error occurs.
     """
     try:
-        client = gradio_client.Client(space_id)
+        if hf_token is None:
+            hf_token = os.environ.get("HF_TOKEN")
+        client = gradio_client.Client(space_id, hf_token=hf_token)
         job = client.submit(api_name=api_name, *args)
         return job
     except Exception as e:

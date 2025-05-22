@@ -56,10 +56,12 @@ def handle_search_spaces(args):
     """Handles the 'search' command."""
     try:
         print(f"Searching for Spaces with task: '{args.task_description}', sort_by: {args.sort_by}, limit: {args.limit}")
+        hf_token = os.environ.get("HF_TOKEN")
         spaces = space_finder.find_spaces(
             task_description=args.task_description,
             sort_by=args.sort_by,
-            limit=args.limit
+            limit=args.limit,
+            hf_token=hf_token
         )
         if spaces:
             print("Found Spaces:")
@@ -96,7 +98,8 @@ def handle_run_info(args):
     """Handles the 'run info' command."""
     try:
         print(f"Fetching API details for Space: {args.space_id}")
-        api_details = space_runner.get_space_api_details(args.space_id)
+        hf_token = os.environ.get("HF_TOKEN")
+        api_details = space_runner.get_space_api_details(args.space_id, hf_token=hf_token)
         if api_details:
             print("API Details:")
             print(api_details) # Already formatted string
@@ -115,7 +118,8 @@ def handle_run_predict(args):
         print(f"Parsed positional params: {pos_args}")
         print(f"Parsed keyword params: {kw_args}")
 
-        prediction_result = space_runner.run_space_predict(args.space_id, args.api_name, *pos_args, **kw_args)
+        hf_token = os.environ.get("HF_TOKEN")
+        prediction_result = space_runner.run_space_predict(args.space_id, args.api_name, *pos_args, **kw_args, hf_token=hf_token)
 
         if prediction_result is not None:
             print("\nPrediction Result:")
@@ -170,7 +174,8 @@ def handle_run_submit(args):
         print(f"Parsed positional params: {pos_args}")
         print(f"Parsed keyword params: {kw_args}")
 
-        job = space_runner.run_space_submit(args.space_id, args.api_name, *pos_args, **kw_args)
+        hf_token = os.environ.get("HF_TOKEN")
+        job = space_runner.run_space_submit(args.space_id, args.api_name, *pos_args, **kw_args, hf_token=hf_token)
 
         if job:
             # Gradio Job object doesn't have a persistent ID string readily available without internal knowledge.
